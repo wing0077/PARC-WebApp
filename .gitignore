@@ -1,0 +1,16 @@
+# Mac file management file
+*.DS_Store
+
+# Eclipse setting files
+.classpath
+.project
+.settings
+
+# auto-generated files and output files
+target/
+target-eclipse/
+*.log
+*.out
+
+# dataset files
+web-app/dataset/
