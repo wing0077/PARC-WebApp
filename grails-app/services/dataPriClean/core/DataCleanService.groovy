@@ -193,20 +193,20 @@ class DataCleanService {
 				switch (it) {
 					case "weighted":
 						def s
-						def we = simThreshold
+						def we = (String)(float)(Double.parseDouble(simThreshold)*0.35)
 						if (config && config["weighted"]) {
-							s = getRecommendationsIndList(targetDataset, masterDataset, simThreshold, it, config["weighted"])
+							s = getRecommendationsIndList(targetDataset, masterDataset, we, it, config["weighted"])
 						}
 						else {
-							s = getRecommendationsIndList(targetDataset, masterDataset, simThreshold, it, null)
+							s = getRecommendationsIndList(targetDataset, masterDataset, we, it, null)
 						}
 						result.add(s)
 						break
 					case "dynamic":
 						def s
 //						def dy = (String)(float)(Double.parseDouble(simThreshold)/3)
-						def dy = (String)(float)(Double.parseDouble(simThreshold)-0.3)
-						System.out.println(dy)
+						def dy = (String)(float)(Math.abs(Double.parseDouble(simThreshold)*0.35-0.1))
+//						System.out.println(dy)
 						if (config && config["dynamic"]) {
 							s = getRecommendationsIndList(targetDataset, masterDataset, dy, it, config["dynamic"])
 						}
@@ -218,7 +218,7 @@ class DataCleanService {
 					case "lexical":
 						def s
 //						def le = (String)(float)(Double.parseDouble(simThreshold)/4)
-						def le = (String)(float)(Double.parseDouble(simThreshold)-0.4)
+						def le = (String)(float)(Math.abs(Double.parseDouble(simThreshold)*0.35-0.15))
 						if (config && config["lexical"]) {
 							s = getRecommendationsIndList(targetDataset, masterDataset, le, it, config["lexical"])
 						}
@@ -231,7 +231,7 @@ class DataCleanService {
 					case "constrained":
 						def s
 //						def co = (String)(float)(Double.parseDouble(simThreshold)/2)
-						def co = (String)(float)(Double.parseDouble(simThreshold)-0.2)
+						def co = (String)(float)(Math.abs(Double.parseDouble(simThreshold)*0.35-0.05))
 						if (config && config["constrained"]) {
 							s = getRecommendationsIndList(targetDataset, masterDataset, co, it, config["constrained"])
 						}
