@@ -117,6 +117,7 @@ class DataCleaningController {
 			if (searchObj.getClass().equals("".getClass())) {
 				searchObj = [searchObj]
 			}
+//			searchObj 
 			
 //			println("getRec()::searchObj: " + searchObj)
 //			println("getRec()::config: " + config)
@@ -410,7 +411,7 @@ class DataCleaningController {
 		}
 		//user has not defined this setting
 		else {
-			config = resetConstrainedSASetting()
+			config = resetWeightedSASetting()
 		}
 		
 		//reset the setting
@@ -577,11 +578,17 @@ class DataCleaningController {
 		
 		//constrained config
 		if (params.cleaning) {
+			config["alphaPvt"] = Double.parseDouble(params.cleaning)// -zheng
 			config["cleaning"] = Double.parseDouble(params.cleaning)
 		}
 		if (params.size) {
+			config["betaInd"] = Double.parseDouble(params.size)
 			config["size"] = Double.parseDouble(params.size)
 		}
+		
+		Double d1 = 0.005
+		config["gamaSize"] = d1
+//		config["gamaSize"] = Double.parseDouble(params.size)
 		
 		configAll["constrained"] = config
 		
@@ -619,12 +626,15 @@ class DataCleaningController {
 		
 		//constrained config
 		if (params.privacy) {
+			config["alphaPvt"] = Double.parseDouble(params.privacy)
 			config["privacy"] = Double.parseDouble(params.privacy)
 		}
 		if (params.cleaning) {
+			config["betaInd"] = Double.parseDouble(params.cleaning)
 			config["cleaning"] = Double.parseDouble(params.cleaning)
 		}
 		if (params.size) {
+			config["gamaSize"] = Double.parseDouble(params.size)
 			config["size"] = Double.parseDouble(params.size)
 		}
 		
@@ -664,11 +674,17 @@ class DataCleaningController {
 		
 		//constrained config
 		if (params.privacy) {
+			config["alphaPvt"] = Double.parseDouble(params.privacy)// -zheng
 			config["privacy"] = Double.parseDouble(params.privacy)
 		}
 		if (params.cleaning) {
+			config["betaInd"] = Double.parseDouble(params.cleaning)
 			config["cleaning"] = Double.parseDouble(params.cleaning)
 		}
+		
+		Double d1 = 0.005
+		config["gamaSize"] = d1
+	
 		
 		configAll["lexical"] = config
 		
@@ -709,9 +725,9 @@ class DataCleaningController {
 		//weighted SA Setting
 		config["cleaning"] = 1
 		config["size"] = 1
-//		config["alphaPvt"] = 0.10
-//		config["betaInd"] = 0.895
-//		config["gamaSize"] = 0.005
+		config["alphaPvt"] = 0.10
+		config["betaInd"] = 0.895
+		config["gamaSize"] = 0.005
 		
 		return config
 	}
@@ -728,12 +744,12 @@ class DataCleaningController {
 		config["bestEn"] = 0.00001
 		
 		//weighted SA Setting
-		config["privacy"] = 1
-		config["cleaning"] = 1
-		config["size"] = 1
-//		config["alphaPvt"] = 0.10
-//		config["betaInd"] = 0.895
-//		config["gamaSize"] = 0.005
+		config["privacy"] = 0.10
+		config["cleaning"] = 0.895
+		config["size"] = 0.005
+		config["alphaPvt"] = 0.10
+		config["betaInd"] = 0.895
+		config["gamaSize"] = 0.005
 		
 		return config
 	}
@@ -750,11 +766,11 @@ class DataCleaningController {
 		config["bestEn"] = 0.00001
 		
 		//weighted SA Setting
-		config["privacy"] = 1
-		config["cleaning"] = 1
-//		config["alphaPvt"] = 0.10
-//		config["betaInd"] = 0.895
-//		config["gamaSize"] = 0.005
+		config["privacy"] = 0.8
+		config["cleaning"] = 0.1
+		config["alphaPvt"] = 0.10
+		config["betaInd"] = 0.895
+		config["gamaSize"] = 0.005
 		
 		return config
 	}

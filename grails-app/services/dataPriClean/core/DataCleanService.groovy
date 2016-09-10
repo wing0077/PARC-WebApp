@@ -88,11 +88,12 @@ class DataCleanService {
 						break
 					case "dynamic":
 						def s
+						def dy = simThreshold-0.5 
 						if (config && config["dynamic"]) {
-							s = getRecommendationsInd(targetDataset, masterDataset, simThreshold, it, config["dynamic"])
+							s = getRecommendationsInd(targetDataset, masterDataset, dy, it, config["dynamic"])
 						}
 						else {
-							s = getRecommendationsInd(targetDataset, masterDataset, simThreshold, it, null)
+							s = getRecommendationsInd(targetDataset, masterDataset, dy, it, null)
 						}
 						sb.append("====================================== \n")
 						sb.append("For dynamic algorithm: \n")
@@ -153,13 +154,13 @@ class DataCleanService {
 //					searchType = SearchType.BRUTE_FORCE
 					break
 				case "constrained":
-					searchType = SearchType.SA_EPS_FLEX
+					searchType = SearchType.SA_WEIGHTED
 					break
 				case "dynamic":
-					searchType = SearchType.SA_EPS_DYNAMIC
+					searchType = SearchType.SA_WEIGHTED
 					break
 				case "lexical":
-					searchType = SearchType.SA_EPS_LEX
+					searchType = SearchType.SA_WEIGHTED
 					break
 				default:
 					searchType = SearchType.SA_EPS
@@ -192,6 +193,7 @@ class DataCleanService {
 				switch (it) {
 					case "weighted":
 						def s
+						def we = simThreshold
 						if (config && config["weighted"]) {
 							s = getRecommendationsIndList(targetDataset, masterDataset, simThreshold, it, config["weighted"])
 						}
@@ -202,31 +204,39 @@ class DataCleanService {
 						break
 					case "dynamic":
 						def s
+//						def dy = (String)(float)(Double.parseDouble(simThreshold)/3)
+						def dy = (String)(float)(Double.parseDouble(simThreshold)-0.3)
+						System.out.println(dy)
 						if (config && config["dynamic"]) {
-							s = getRecommendationsIndList(targetDataset, masterDataset, simThreshold, it, config["dynamic"])
+							s = getRecommendationsIndList(targetDataset, masterDataset, dy, it, config["dynamic"])
 						}
 						else {
-							s = getRecommendationsIndList(targetDataset, masterDataset, simThreshold, it, null)
+							s = getRecommendationsIndList(targetDataset, masterDataset, dy, it, null)
 						}
 						result.add(s)
 						break
 					case "lexical":
 						def s
+//						def le = (String)(float)(Double.parseDouble(simThreshold)/4)
+						def le = (String)(float)(Double.parseDouble(simThreshold)-0.4)
 						if (config && config["lexical"]) {
-							s = getRecommendationsIndList(targetDataset, masterDataset, simThreshold, it, config["lexical"])
+							s = getRecommendationsIndList(targetDataset, masterDataset, le, it, config["lexical"])
 						}
 						else {
-							s = getRecommendationsIndList(targetDataset, masterDataset, simThreshold, it, null)
+							s = getRecommendationsIndList(targetDataset, masterDataset, le, it, null)
 						}
-						result.add(s)
+						result.add(s) 
+						
 						break
 					case "constrained":
 						def s
+//						def co = (String)(float)(Double.parseDouble(simThreshold)/2)
+						def co = (String)(float)(Double.parseDouble(simThreshold)-0.2)
 						if (config && config["constrained"]) {
-							s = getRecommendationsIndList(targetDataset, masterDataset, simThreshold, it, config["constrained"])
+							s = getRecommendationsIndList(targetDataset, masterDataset, co, it, config["constrained"])
 						}
 						else {
-							s = getRecommendationsIndList(targetDataset, masterDataset, simThreshold, it, null)
+							s = getRecommendationsIndList(targetDataset, masterDataset, co, it, null)
 						}
 						result.add(s)
 						break

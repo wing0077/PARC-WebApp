@@ -7,16 +7,28 @@
     <script src="http://d3js.org/d3.v3.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
-    
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.0/jquery-ui.js"></script><%--
+  
     <script type="text/javascript">
 	$(document).ready(function(){ 
 	    $("#myTab a").click(function(e){
 	    	e.preventDefault();
 	    	$(this).tab('show');
 	    });
-	    $("#myTab-weighted").tab('show');
+//	    $('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
+//           e.relatedTarget // previous tab
+//        });
+//	    $("#myTab-weighted").tab('show');//??????????????????????? -zheng
 	});
 	</script>
+	
+	--%>
+	<script>
+  $( function() {
+    $( "#tabs" ).tabs();
+  } );
+  </script>
     
     <title>Data Cleaning</title>   
     
@@ -25,20 +37,25 @@
   	<g:render template="/dataCleaning/recommendationHeader" />
   
     <h3>Recommended Repairs:</h3>
-    <div class="col-md-8">
+    <div class="col-md-8" id="tabs">
    	
-		   	<ul class="nav nav-tabs" id="myTab">
+		   	<ul class="nav nav-tabs" id="myTab"><%--
 		      <li><a id="myTab-weighted" href="#weighted"><font size="3"><b>Weighted Search</b></font></a></li>
 			  <li><a id="myTab-constrained" href="#constrained"><font size="3"><b>Constrained Search</b></font></a></li>
 			  <li><a id="myTab-dynamic" href="#dynamic"><font size="3"><b>Dynamic Search</b></font></a></li>
 			  <li><a id="myTab-lexical" href="#lexical"><font size="3"><b>Hierarchical Search</b></font></a></li>
+			--%>
+		      <li><a class = "active" id="myTab-weighted" href="#weighted"><font size="3"><b>Weighted Search</b></font></a></li>
+			  <li><a class = "active" id="myTab-constrained" href="#constrained"><font size="3"><b>Constrained Search</b></font></a></li>
+			  <li><a class = "active" id="myTab-dynamic" href="#dynamic"><font size="3"><b>Dynamic Search</b></font></a></li>
+			  <li><a class = "active" id="myTab-lexical" href="#lexical"><font size="3"><b>Hierarchical Search</b></font></a></li>
 			</ul>
 		   	
-		   	<div class="tab-content">
+		   	<div class="tab-content" >
 		   		<g:set var="searchCounter" value="${0}" />
 			   	<g:each in="${recs}" var="recBySearch" >
 			   		<g:set var="searchCounter" value="${searchCounter + 1}" />
-			   		<div id="${recBySearch["search"] }" class="tab-pane fade">
+			   		<div id="${recBySearch["search"] }" class="tab-pane fade in active">
 			   		
 				   		<div class="panel panel-default">
 				  			<div class="panel-body">
@@ -73,10 +90,10 @@
 			  											<h4 class="text-center"><g:link controller="dataCleaning" action="recommendationDetails" params="[constraintId: "${fdCounter }", repairId: "${counter }", searchId:"${searchCounter }" ]">r${counter }</g:link></h4>
 			  										</div>
 												   	<div class="col-sm-5 col-md-5">
-												   		<svg class="chart" id="chart${fdCounter }${counter }"></svg>
+												   		<svg class="chart" id="chart${recBySearch["search"] }${fdCounter }${counter }"></svg>
 												   	</div>
 											    	<script>
-											    	var select = "#chart${fdCounter }${counter }"
+											    	var select = "#chart${recBySearch["search"] }${fdCounter }${counter }"
 											    	var data = {labels: [''],
 										    			         series: [
 										    			           {
@@ -115,6 +132,5 @@
 	  	<svg class="chart"></svg>
 	  	<script src="${resource(dir: 'js', file: 'multi_bars.js')}"></script>
   	 -->
-  	
   </body>
 </html>
