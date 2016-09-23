@@ -18,7 +18,7 @@
 				<div class="panel-body">
 					<div class="row">
       					<div class="col-xs-6">
-					        <label>Privacy:</label> 
+					        <label>epsilon_k:</label> 
 					        <div class="range range-success">
 					        	<input id="privacy" type="range" name="privacy" min="0.0" max="1.0" value="${config["privacy"] }" step="0.1" onchange="privacyText.value=value" />
 					        	<output id="privacyText">${config["privacy"] }</output>
@@ -26,7 +26,7 @@
 				        </div>
 			        
 			        	<div class="col-xs-6">
-					        <label>Cleaning:</label> 
+					        <label>epsilon_l:</label> 
 					        <div class="range range-success">
 					        	<input id="cleaning" type="range" name="cleaning" min="0.0" max="1.0" value="${config["cleaning"] }" step="0.1" onchange="cleaningText.value=value" />
 					        	<output id="cleaningText">${config["cleaning"] }</output>

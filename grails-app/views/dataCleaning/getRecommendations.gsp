@@ -37,6 +37,7 @@
   	<g:render template="/dataCleaning/recommendationHeader" />
   
     <h3>Recommended Repairs:</h3>
+ 
     <div class="col-md-8" id="tabs">
    	
 		   	<ul class="nav nav-tabs" id="myTab"><%--
@@ -66,6 +67,7 @@
 						   				<b>Target Dataset: ${recBySearch["targetDataset"] } </b><br>
 						   				<b>Similarity Threshold (&#964): ${recBySearch["simThreshold"] }</b>
 					   				</div>
+			
 					   				<div class="col-md-6">
 					   					<b>Privacy Loss (pvt): ${recBySearch["searchConfig"]["alphaPvt"] }</b><br>
 						   				<b>Data Utility (util): ${recBySearch["searchConfig"]["betaInd"] }</b><br>

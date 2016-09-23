@@ -13,7 +13,7 @@
 		<g:uploadForm controller="dataCleaning" action="dynamicSASetting" method="POST">
 			<g:render template="/dataCleaning/searchConfigSetting" />
 			
-			<div class="panel panel-success">
+			<%--<div class="panel panel-success">
 				<div class="panel-heading">Privacy & Cleaning Utility Objective Configuration:</div>
 				<div class="panel-body">
 					<div class="row">
@@ -46,7 +46,7 @@
 		        </div>
 	        </div>
 	        
-	        <input class="btn btn-success" name="func" type="submit" value="Save"/>
+	        --%><input class="btn btn-success" name="func" type="submit" value="Save"/>
 	        <input class="btn btn-primary" name="func" type="submit" value="Reset to default"/>
 		
 	    </g:uploadForm>

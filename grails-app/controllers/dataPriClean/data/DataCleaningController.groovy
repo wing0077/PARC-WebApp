@@ -411,7 +411,7 @@ class DataCleaningController {
 		}
 		//user has not defined this setting
 		else {
-			config = resetWeightedSASetting()
+			config = resetConstrainedSASetting()
 		}
 		
 		//reset the setting
@@ -682,9 +682,12 @@ class DataCleaningController {
 			config["cleaning"] = Double.parseDouble(params.cleaning)
 		}
 		
-		Double d1 = 0.005
-		config["gamaSize"] = d1
-	
+		Double d1 = 0.10
+		config["alphaPvt"] = d1
+		Double d2 = 0.895
+		config["betaInd"] = d2
+		Double d3 = 0.005
+		config["gamaSize"] = d3
 		
 		configAll["lexical"] = config
 		
